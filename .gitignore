@@ -1,0 +1,10 @@
+*.pdf
+*.mobi
+*.epub
+log
+all_issues
+urls2dl
+checkedurls
+Supplement.epub-LJ-Drupal
+Supplement.mobi-LJ-Drupal
+Supplement.pdf-LJ-Drupal

@@ -1,0 +1,18 @@
+#!/bin/sh
+file1=urls2dl
+file2=checkedurls
+while true ; do
+        url=$(shuf -n 1 "$file1")
+        grep "$url" "$file2" >/dev/null && continue
+        {
+                urls=$(./get_urls "$url")
+                echo "$urls" >> "$file1"
+                echo "$url" >> "$file2"
+                echo "Processed $url."
+        } &
+        #sort -u "$file1" | tee "$file1" > /dev/null
+        #sort -u "$file2" | tee "$file2" > /dev/null
+        #cmp -s "$file1" "$file2" && break
+        while [ $(ls -a | wc -l) -gt 20 ] ; do sleep 2 ; done
+done
+echo "Done."

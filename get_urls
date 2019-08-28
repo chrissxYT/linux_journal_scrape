@@ -1,0 +1,2 @@
+#!/bin/sh
+lynx -dump https://secure2.linuxjournal.com/pdf/dljdownload.php | grep download\.linuxjournal\.com | awk '{ print $2 }' > all_issues

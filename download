@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "Summoned new download instance with pid $$ at $(date +%s) ($(date -R))" | tee -a log
+for url in $(awk '{ print $0 "&action=spit" }' < all_issues)
+do
+        filename=$(echo "$url" | sed 's/.*&tcode=\(.\+\)-\(.\+\)-/\2.\1/' | sed 's/&action=spit//')
+        echo curl -o \"$filename\" \"$url\"
+        curl -o "dl/$filename" "$url"
+done | tee -a log

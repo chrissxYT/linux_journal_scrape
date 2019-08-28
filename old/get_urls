@@ -1,0 +1,7 @@
+#!/bin/sh
+file=.$$
+lynx -dump "$1" > $file
+echo '/References
+dggZZ' | vim -n -u NONE $file > /dev/null 2> /dev/null
+cat $file | sed '/^$/d' | sed 's/ //g' | sed -E 's/[0-9]+\.//g' | grep -E '^https?://(www\.)?linuxjournal\.com' | sed 's/\r//g' | sed 's/#.*$//' | sort -u | sed 's/^.*&lt;.*$//' | sed 's/^.*<.*$//' | sed '/^$/d'
+rm $file
